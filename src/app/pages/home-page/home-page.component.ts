@@ -12,7 +12,6 @@ export class HomePageComponent {
   constructor(private router: Router) { }
 
   startDraw(){
-    console.log('startDraw');
     this.router.navigate(['/group-draw']);
   }
 }

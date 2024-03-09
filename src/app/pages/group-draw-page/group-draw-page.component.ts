@@ -24,8 +24,8 @@ export class GroupDrawPageComponent implements OnInit{
   ) {
     this.groupSize = 0;
     this.currentGroup = {
-      id: 1,
-      name: 'Group A',
+      id: 0,
+      name: '',
       members: []
     }
     this.isDrawing = true;
@@ -34,6 +34,7 @@ export class GroupDrawPageComponent implements OnInit{
   ngOnInit(): void {
     this.assetProvider.getSettingsData$().subscribe((settings) => {
       this.groupSize = settings.groupSize;
+      this.nextGroup();
       this.isDrawing = false;
     });
   }
@@ -50,5 +51,18 @@ export class GroupDrawPageComponent implements OnInit{
   
   draw(){
     this.groupDrawBox?.draw();
+  }
+
+  isAllMembersDrawn(): boolean {
+    console.log('group members length', this.currentGroup.members.length, this.groupSize);
+    return this.currentGroup.members.length === this.groupSize;
+  }
+
+  nextGroup(): void {
+    this.currentGroup = {
+      id: this.currentGroup.id + 1,
+      name: 'Group ' + String.fromCharCode(65 + this.currentGroup.id),
+      members: []
+    }
   }
 }

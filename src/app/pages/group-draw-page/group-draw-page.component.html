@@ -1,2 +1,11 @@
 <app-group-draw-box [group]="currentGroup" [groupSize]="groupSize" (isDrawingEvent)="changeDrawingStatus($event)"></app-group-draw-box>
-<button class="btn btn-danger" (click)="draw()">Draw</button>
+<div class="d-flex justify-content-center mt-2">
+    <div [ngTemplateOutlet]="isAllMembersDrawn()?next_group_button:draw_button"></div>
+</div>
+
+<ng-template #draw_button>
+    <button [disabled]="isDrawing" class="btn btn-danger draw-button" (click)="draw()">Draw</button>
+</ng-template>
+<ng-template #next_group_button>
+    <button [disabled]="isDrawing" class="btn btn-danger draw-button" (click)="nextGroup()">Next Group</button>
+</ng-template>

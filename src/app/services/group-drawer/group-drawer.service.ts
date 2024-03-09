@@ -3,7 +3,7 @@ import { Group } from '../../models/group';
 import { Student } from '../../models/student';
 import { DrawerService } from '../drawer/drawer.service';
 import { AssetProviderService } from '../asset-provider/asset-provider.service';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +23,8 @@ export class GroupDrawerService {
   draw$(group: Group): Observable<Student>{
     return this.students$.pipe(
       map(((students: Student[]) => {
+        students = students.filter((student) => !this.selectedStudents.find((selected) => selected.id === student.id));
+        console.log(students);
         let selected = this.drawerService.draw(students);
         this.selectedStudents.push(selected);
         return selected;

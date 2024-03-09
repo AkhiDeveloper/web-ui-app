@@ -34,11 +34,14 @@ export class GroupDrawBoxComponent implements OnChanges{
     this.isLoading = true;
     this.isChanging = true;
     this.currentMemberIndex = 0;
-    console.log(this.groupSize);
+    this.memberBoxes?.forEach((box) => {
+      const currentBox = box.nativeElement as HTMLElement;
+      currentBox.style.backgroundColor = 'white';
+      currentBox.children[0].innerHTML = '';
+    });
     setTimeout(() => {
       this.isChanging = false;
       this.drawingMembers = Array.from({length: this.groupSize});
-      console.log(this.drawingMembers);
       this.isDrawing = false;
       this.isLoading = false;
     }, 100);
@@ -55,7 +58,6 @@ export class GroupDrawBoxComponent implements OnChanges{
   }
 
   draw(): void{
-    console.log('draw is called');
     if(this.isDrawing){
       return;
     }
@@ -63,10 +65,9 @@ export class GroupDrawBoxComponent implements OnChanges{
     if (!this.group){
       return;
     }
-    console.log(this.group);
     this.groupDrawer.draw$(this.group).subscribe(
       (data) => {
-        console.log('draw subscribed');
+        this.group?.members.push(data);
         const currentBoxRef = this.memberBoxes?.toArray()[this.currentMemberIndex];
         if(!currentBoxRef){
           return;
@@ -74,7 +75,6 @@ export class GroupDrawBoxComponent implements OnChanges{
         const currentBox = currentBoxRef.nativeElement as HTMLElement;
         currentBox.style.backgroundColor = 'green';
         currentBox.children[0].innerHTML = data.name;
-        console.log('draw finished');
         this.currentMemberIndex++;
         this.finishDrawing();
       }
