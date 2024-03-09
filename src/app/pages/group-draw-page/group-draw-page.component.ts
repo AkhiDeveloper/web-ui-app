@@ -5,6 +5,9 @@ import { GroupDrawerService } from '../../services/group-drawer/group-drawer.ser
 import { CommonModule } from '@angular/common';
 import { GroupDrawBoxComponent } from "../../components/group-draw-box/group-draw-box.component";
 import { Group } from '../../models/group';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app.state';
+import { loadStudents } from '../../store/students/students.actions';
 
 @Component({
     selector: 'app-group-draw-page',
@@ -21,6 +24,7 @@ export class GroupDrawPageComponent implements OnInit{
 
   constructor(
     private assetProvider: AssetProviderService,
+    private store: Store<AppState>
   ) {
     this.groupSize = 0;
     this.currentGroup = {
@@ -32,6 +36,7 @@ export class GroupDrawPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.store.dispatch(loadStudents());
     this.assetProvider.getSettingsData$().subscribe((settings) => {
       this.groupSize = settings.groupSize;
       this.nextGroup();

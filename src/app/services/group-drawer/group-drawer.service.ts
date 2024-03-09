@@ -4,24 +4,29 @@ import { Student } from '../../models/student';
 import { DrawerService } from '../drawer/drawer.service';
 import { AssetProviderService } from '../asset-provider/asset-provider.service';
 import { Observable, map, of } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { studentsSelector } from '../../store/selectors';
+import { AppState } from '../../store/app.state';
+import { loadStudents } from '../../store/students/students.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GroupDrawerService {
-  private students$: Observable<Student[]>;
+  private participants$: Observable<Student[]>;
   private selectedStudents: Student[];
 
   constructor(
     private drawerService: DrawerService,
-    private assetProvider: AssetProviderService
+    private assetProvider: AssetProviderService,
+    private store: Store<AppState>
   ) {
-    this.students$ = this.assetProvider.getAssetStudentData$();
+    this.participants$ = store.pipe(select(studentsSelector));
     this.selectedStudents = [];
   }
 
   draw$(group: Group): Observable<Student>{
-    return this.students$.pipe(
+    return this.participants$.pipe(
       map(((students: Student[]) => {
         students = students.filter((student) => !this.selectedStudents.find((selected) => selected.id === student.id));
         console.log(students);

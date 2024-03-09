@@ -14,13 +14,14 @@ export class AssetProviderService {
     const fileName = 'student-data.csv';
      return this.getAssetCSVData$(fileName).pipe(
       map((data: any[]) => {
+        console.log('student data:', data);
         const students: Student[] = [];
         let curr_id = 1;
         data.forEach((student: any) => {
           students.push({
             id: curr_id,
             rollNumber: student.roll_number,
-            name: student.name,
+            name: (student.name as string).toUpperCase(),
             email: student.email,
           });
           curr_id++;
