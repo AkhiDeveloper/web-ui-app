@@ -3,6 +3,7 @@ import { Group } from '../../models/group';
 import { CommonModule } from '@angular/common';
 import { Observable, of } from 'rxjs';
 import { GroupDrawerService } from '../../services/group-drawer/group-drawer.service';
+import { Student } from '../../models/student';
 
 @Component({
   selector: 'app-group-draw-box',
@@ -12,7 +13,7 @@ import { GroupDrawerService } from '../../services/group-drawer/group-drawer.ser
   styleUrl: './group-draw-box.component.css'
 })
 export class GroupDrawBoxComponent implements OnChanges{
-  @Input() group?: Group;
+  @Input() group?: Group<Student>;
   @Input() groupSize: number = 0;
   @ViewChildren('memberboxes') memberBoxes?: QueryList<ElementRef>;
   drawingMembers?: any[];

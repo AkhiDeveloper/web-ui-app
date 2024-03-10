@@ -1,7 +1,7 @@
-import { Student } from "./student";
+import { GroupDetails } from "./group-details";
 
-export interface Group {
-    id: number;
-    name: string;
-    members: Student[];
+export interface Group<T> {
+    id: string;
+    sn: number;
+    details: GroupDetails<T>
 }
