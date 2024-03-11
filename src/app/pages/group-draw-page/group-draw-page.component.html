@@ -12,10 +12,10 @@
 
 
 <ng-template #draw_button>
-    <button [disabled]="isDrawing" class="btn btn-danger draw-button" (click)="draw()">Draw</button>
+    <button [disabled]="isDrawing" class="btn btn-danger draw-button" (click)="draw()" [textContent]="isDrawing?'Drawing...':'Draw'">Draw</button>
 </ng-template>
 <ng-template #next_group_button>
-    <button class="btn btn-danger draw-button" (click)="nextGroup()">Next Group</button>
+    <button [disabled]="allGroupDone$ | async" class="btn btn-danger draw-button" (click)="nextGroup()">Next Group</button>
 </ng-template>
 <ng-template #next_page_button>
     <button class="btn btn-primary draw-button" (click)="goToNextPage()">Group List</button>

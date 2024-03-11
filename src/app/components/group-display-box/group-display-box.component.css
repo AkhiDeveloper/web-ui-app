@@ -5,20 +5,17 @@
 }
 
 .group-title{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     background-color: #df6262;
 }
 
 .group-member{
-    font-size: 18px;
-    min-height: 38px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    font-size: 16px;
+    min-height: 34px;
+    padding: 5px 10px 5px 10px;
     border-bottom: 1px solid #000;
 }
 
@@ -26,4 +23,32 @@
     background-color: #51e40c;
     color: #1420c4;
     font-weight: bold;
+}
+
+.group-box.small {
+    width: 200px;
+}
+
+.group-title.small {
+    font-size: 14px;
+}
+
+.group-member.small {
+    font-size: 12px;
+    padding: 2px;
+    min-height: 22px;
+}
+
+.group-box.large {
+    width: 400px;
+}
+
+.group-title.large {
+    font-size: 20px;
+}
+
+.group-member.large {
+    font-size: 18px;
+    padding: 10px 20px 10px 20px;
+    min-height: 38px;
 }

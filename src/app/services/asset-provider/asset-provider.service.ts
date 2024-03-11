@@ -14,7 +14,6 @@ export class AssetProviderService {
     const fileName = 'student-data.csv';
      return this.getAssetCSVData$(fileName).pipe(
       map((data: any[]) => {
-        console.log('student data:', data);
         const students: Student[] = [];
         let curr_id = 1;
         data.forEach((student: any) => {
@@ -41,6 +40,11 @@ export class AssetProviderService {
         };
       })
     );
+  }
+
+  getProjectsData$(): Observable<string[]> {
+    const fileName = 'projects.json';
+    return this.getAssetData$(fileName);
   }
 
   private getAssetCSVData$(filename: string) : Observable<any[]> {

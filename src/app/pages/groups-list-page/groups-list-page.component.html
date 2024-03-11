@@ -1,0 +1,8 @@
+<div class="d-flex justify-content-between ">
+    <div *ngFor="let group of groups" class="p-2 ">
+        <app-group-display-box [group]="group" [displaySize]="'small'"></app-group-display-box>
+    </div>
+</div>
+<div *ngIf="!(isDrawCompleted$() | async)" class="mt-2 d-flex justify-content-center ">
+    <a class="btn btn-danger" type="button" [routerLink]="['/group-draw']">Go To Draw</a>
+</div>

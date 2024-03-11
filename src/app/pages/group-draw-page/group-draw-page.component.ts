@@ -62,7 +62,7 @@ export class GroupDrawPageComponent implements OnInit{
   }
 
   goToNextPage(){
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('/groups-list');
   }
   
   draw(){

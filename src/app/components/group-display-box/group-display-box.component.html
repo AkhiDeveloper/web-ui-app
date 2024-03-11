@@ -1,8 +1,8 @@
-<div class="group-box">
+<div class="group-box" [ngClass]="displaySize">
     <div class="group-title">
-        <h2>{{group?.details?.name}}</h2>
+        <h2 [ngClass]="displaySize">{{group?.details?.name}}</h2>
     </div>
-    <div *ngFor="let item of memberBoxes" class="group-member text-center" [ngClass]="(item.length > 0?'selected':'')" #memberboxes>
+    <div *ngFor="let item of memberBoxes" class="group-member text-center" [ngClass]="(item.length > 0?'selected':'') + ' ' + displaySize"  #memberboxes>
        <!-- <div class="text-center">{{item}}</div> -->
        {{item}}
     </div>

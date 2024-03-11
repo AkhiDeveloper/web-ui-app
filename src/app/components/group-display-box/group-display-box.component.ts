@@ -11,6 +11,7 @@ import { Group } from '../../models/group';
   styleUrl: './group-display-box.component.css'
 })
 export class GroupDisplayBoxComponent implements OnChanges {
+  @Input() displaySize: 'small' | 'normal' | 'large' = 'normal';
   @Input() group?: Group<Student>;
   memberBoxes: string[] = [];
 
@@ -19,7 +20,6 @@ export class GroupDisplayBoxComponent implements OnChanges {
       return;
     }
     this.memberBoxes = [];
-    console.log(this.group);
     for(let i = 0; i < this.group.details.maxMemberSize; i++){
       this.memberBoxes.push('');
     }
