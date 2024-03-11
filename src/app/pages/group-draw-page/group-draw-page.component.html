@@ -1,11 +1,22 @@
-<app-group-draw-box [group]="currentGroup" [groupSize]="groupSize" (isDrawingEvent)="changeDrawingStatus($event)"></app-group-draw-box>
-<div class="d-flex justify-content-center mt-2">
-    <div [ngTemplateOutlet]="isAllMembersDrawn()?next_group_button:draw_button"></div>
+<!-- <app-group-draw-box [group]="currentGroup" [groupSize]="groupSize" (isDrawingEvent)="changeDrawingStatus($event)"></app-group-draw-box> -->
+
+<app-group-display-box [group]="currentGroup"></app-group-display-box>
+<div class="d-flex justify-content-evenly  mt-2">
+    <div class="d-flex justify-content-start">
+        <div [ngTemplateOutlet]="isAllMembersDrawn()?next_group_button:draw_button"></div>
+    </div>
+    <div class="d-flex justify-content-start">
+        <div [ngTemplateOutlet]="next_page_button"></div>
+    </div>
 </div>
+
 
 <ng-template #draw_button>
     <button [disabled]="isDrawing" class="btn btn-danger draw-button" (click)="draw()">Draw</button>
 </ng-template>
 <ng-template #next_group_button>
-    <button [disabled]="isDrawing" class="btn btn-danger draw-button" (click)="nextGroup()">Next Group</button>
+    <button class="btn btn-danger draw-button" (click)="nextGroup()">Next Group</button>
+</ng-template>
+<ng-template #next_page_button>
+    <button class="btn btn-primary draw-button" (click)="goToNextPage()">Group List</button>
 </ng-template>

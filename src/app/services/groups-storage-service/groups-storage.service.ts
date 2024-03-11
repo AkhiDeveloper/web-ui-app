@@ -32,12 +32,19 @@ export class GroupsStorageService {
     return this.groups;
   }
 
-  getLastGroup(): Group<Student>{
+  getLastGroup(): Group<Student> | null{
+    if(this.groups.length < 1){
+      return null;
+    }
     return this.groups[this.groups.length - 1];
   }
 
   addGroup(id: string, details: GroupDetails<Student>): void {
-    const lastSN = this.getLastGroup().sn;
+    let lastSN = 0;
+    const lastGroup = this.getLastGroup();
+    if(lastGroup){
+      lastSN = lastGroup.sn;
+    }
     const current_group: Group<Student> = {
       id,
       sn: lastSN + 1,

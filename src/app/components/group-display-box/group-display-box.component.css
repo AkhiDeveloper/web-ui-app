@@ -1,0 +1,29 @@
+.group-box {
+    border: 3px solid #000;
+    border-radius: 10px;
+    width: 400px;
+}
+
+.group-title{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    background-color: #df6262;
+}
+
+.group-member{
+    font-size: 18px;
+    min-height: 38px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000;
+}
+
+.selected {
+    background-color: #51e40c;
+    color: #1420c4;
+    font-weight: bold;
+}

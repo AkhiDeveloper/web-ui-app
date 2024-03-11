@@ -14,7 +14,6 @@ import { Student } from '../../models/student';
 })
 export class GroupDrawBoxComponent implements OnChanges{
   @Input() group?: Group<Student>;
-  @Input() groupSize: number = 0;
   @ViewChildren('memberboxes') memberBoxes?: QueryList<ElementRef>;
   drawingMembers?: any[];
   currentMemberIndex: number = 0;
@@ -41,8 +40,11 @@ export class GroupDrawBoxComponent implements OnChanges{
       currentBox.children[0].innerHTML = '';
     });
     setTimeout(() => {
+      if(!this.group){
+        return;
+      }
       this.isChanging = false;
-      this.drawingMembers = Array.from({length: this.groupSize});
+      this.drawingMembers = Array.from({length: this.group.details.maxMemberSize});
       this.isDrawing = false;
       this.isLoading = false;
     }, 100);
@@ -68,7 +70,7 @@ export class GroupDrawBoxComponent implements OnChanges{
     }
     this.groupDrawer.draw$(this.group).subscribe(
       (data) => {
-        this.group?.members.push(data);
+        this.group?.details.members.push(data);
         const currentBoxRef = this.memberBoxes?.toArray()[this.currentMemberIndex];
         if(!currentBoxRef){
           return;
