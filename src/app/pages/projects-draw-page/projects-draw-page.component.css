@@ -1,0 +1,45 @@
+.project-row{
+    width: 1000px;
+    /* background-color: #1288d6; */
+    min-height: 40px;
+    margin-top: 10px;
+    border-radius: 20px;
+    border-width: 2px;
+    border-color: black;
+    border-style: dotted;
+    padding: 0;
+}
+
+.project-group {
+    width: 200px;
+    font-size: 18px;
+    background-color: #cc0f0f;
+    border-radius: 20px 0 0 20px;
+    min-height: 36px;
+    text-align: center;
+    padding: 5px 20px 5px 20px;
+    font-weight: bold;
+}
+
+.project-name {
+    width: 800px;
+    font-size: 18px;
+    border-radius: 20px 0 0 20px;
+    min-height: 36px;
+    text-align: center;
+    padding: 5px 20px 5px 20px;
+    font-weight: bold;
+}
+
+.project-row.active{
+    box-shadow: 0px 0px 5px 5px #06a8e7;
+    border-style: solid;
+}
+
+.active .project-group{
+    font-weight: bolder;
+}
+
+.active .project-name{
+    font-weight: bold;
+}

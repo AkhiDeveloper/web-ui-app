@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { GroupDrawPageComponent } from './pages/group-draw-page/group-draw-page.component';
 import { GroupsListPageComponent } from './pages/groups-list-page/groups-list-page.component';
+import { ProjectsDrawPageComponent } from './pages/projects-draw-page/projects-draw-page.component';
 
 export const routes: Routes = [
     {
@@ -24,6 +25,12 @@ export const routes: Routes = [
         path: 'groups-list',
         title: 'Groups List',
         component: GroupsListPageComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'projects',
+        title: 'Projects List',
+        component: ProjectsDrawPageComponent,
         pathMatch: 'full'
     }
 ];

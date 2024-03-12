@@ -1,1 +1,4 @@
-
+<div *ngFor="let group of groups" class="project-row d-flex" [ngClass]="(group.id === currentGroupId)?'active':''">
+    <div class="project-group">{{group.details.name}}</div>
+    <div class="project-name">{{group.details.project}}</div>
+</div>

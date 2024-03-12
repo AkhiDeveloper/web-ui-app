@@ -99,6 +99,7 @@ export class GroupDrawPageComponent implements OnInit{
       name: 'Group ' + String.fromCharCode(65 + totalGroups),
         members: [],
         maxMemberSize: this.groupSize,
+        project: ''
     });
     const lastGroup = this.groupStorageService.getLastGroup();
     if(lastGroup){
