@@ -1,4 +1,9 @@
-<div *ngFor="let group of groups" class="project-row d-flex" [ngClass]="(group.id === currentGroupId)?'active':''">
+<div *ngFor="let group of groups" class="project-row d-flex" [ngClass]="(group.id === currentGroupId)?'active':''" (click)="changeCurrentGroup(group)">
     <div class="project-group">{{group.details.name}}</div>
-    <div class="project-name">{{group.details.project}}</div>
+    <div class="project-name text-start" [ngClass]="(group.details.project.trim() !== '')?'selected':''">{{group.details.project}}</div>
+</div>
+<div class="d-flex justify-content-center mt-4">
+    <button class="btn btn-success me-2 w-100" (click)="drawProjectForCurrentGroup()">Draw</button>
+    <button class="btn btn-primary me-2 w-100" (click)="goToNextGroup()">Next Group</button>
+    <button class="btn btn-danger w-100" (click)="downloadFile()">Finish</button>
 </div>

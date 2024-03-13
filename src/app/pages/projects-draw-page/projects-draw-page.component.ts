@@ -28,8 +28,13 @@ export class ProjectsDrawPageComponent implements OnInit {
   ngOnInit(): void {
     this.projects$ = this.assetProvider.getProjectsData$();
     this.groups = this.groupStorage.getAllGroups() ?? undefined;
-    if(this.groups){
-      this.currentGroupId = this.groups[0].id;
+    if(!this.groups){
+      throw new Error('Groups not found!');
+    }
+    const currentGroup = this.groups.find(x => x.details.project === '');
+    if(currentGroup) {
+      this.currentGroupId = currentGroup.id;
+
     }
   }
 
@@ -45,19 +50,6 @@ export class ProjectsDrawPageComponent implements OnInit {
       current_group.details.project = drawn;
       this.groupStorage.updateGroup(groupId, current_group.details);
       this.groups = this.groupStorage.getAllGroups();
-      if(!this.groups) {
-        throw new Error('Groups not found!');
-      }
-      let current_sn = current_group.sn;
-      if(current_sn < this.groups.length){
-        current_group = this.groups.find(x => x.sn === current_sn  + 1);
-      }
-      if(current_group){
-        this.currentGroupId = current_group.id;
-      }
-      else{
-        this.currentGroupId = '';
-      }
     });
   }
 
@@ -70,5 +62,38 @@ export class ProjectsDrawPageComponent implements OnInit {
       selected.push(group.details.project);
     });
     return selected;
+  }
+
+  changeCurrentGroup(group: Group<Student>) {
+    this.currentGroupId = group.id;
+  }
+
+  drawProjectForCurrentGroup(){
+    this.addProject(this.currentGroupId);
+  }
+
+  goToNextGroup(){
+    if(!this.groups){
+      return;
+    }
+    const nextIndex = this.groups.findIndex(x => x.id === this.currentGroupId) + 1;
+    if(nextIndex > this.groups.length){
+      throw new Error('Current Group is last group');
+    }
+    const nextGroup = this.groups[nextIndex];
+    this.changeCurrentGroup(nextGroup);
+  }
+
+  downloadFile(){
+    const filename = 'groups.json';
+    const jsonBlob = new Blob([JSON.stringify(this.groups)], { type: 'application/json' });
+    const url = window.URL.createObjectURL(jsonBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+
+    // Clean up the URL object
+    window.URL.revokeObjectURL(url);
   }
 }

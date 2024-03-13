@@ -19,16 +19,17 @@
     text-align: center;
     padding: 5px 20px 5px 20px;
     font-weight: bold;
+    color: #ffffff
 }
 
 .project-name {
     width: 800px;
     font-size: 18px;
-    border-radius: 20px 0 0 20px;
+    border-radius: 0 20px 20px 0;
     min-height: 36px;
     text-align: center;
     padding: 5px 20px 5px 20px;
-    font-weight: bold;
+    font-weight: medium;
 }
 
 .project-row.active{
@@ -42,4 +43,8 @@
 
 .active .project-name{
     font-weight: bold;
+}
+
+.project-name.selected{
+    background-color: #73d39e;
 }
