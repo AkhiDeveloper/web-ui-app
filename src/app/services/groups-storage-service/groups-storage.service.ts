@@ -11,6 +11,11 @@ export class GroupsStorageService {
   private groups: Group<Student>[];
 
   constructor(){
+    this.groups = [];
+    this.loadGroups();
+  }
+
+  private loadGroups(){
     this.groups = JSON.parse(localStorage.getItem('groups') ?? '[]');
     this.groups = this.groups.sort((a, b) => a.sn - b.sn);
   }
@@ -68,5 +73,11 @@ export class GroupsStorageService {
     } 
     group.details = updates;
     this.save();
+  }
+
+  removeAllGroups() {
+    const jsonString = JSON.stringify([]);
+    localStorage.setItem('groups', jsonString);
+    this.loadGroups();
   }
 }
